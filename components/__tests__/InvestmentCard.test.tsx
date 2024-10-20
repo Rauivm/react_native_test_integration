@@ -3,6 +3,7 @@ import React from 'react';
 import { fireEvent, render } from '@testing-library/react-native';
 import InvestmentCard from '../InvestmentCard';
 import { Alert } from 'react-native';
+import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 
 jest.spyOn(Alert, 'alert');
 
@@ -13,6 +14,9 @@ describe('InvestmentCard', () => {
     );
 
     expect(getByText('MXRF11')).toBeTruthy();
+    expect(getByText("Rendimento: R$ 0,09")).toBeTruthy();
+    expect(getByText("R$ 11,52")).toBeTruthy();
+    expect(getByText("DAQUI A 2 DIAS")).toBeTruthy();
   });
 
   it('displays alert', () => {
@@ -28,7 +32,7 @@ describe('InvestmentCard', () => {
     const botao_mais_detalhes = getByText("MXRF11")
 
     //presiona o botão
-    fireEvent(getByText("Rendimento: R$ 0,09"), 'click')
+    fireEvent(getByText("Mais detalhes"), 'click')
 
     expect(Alert.alert).toHaveBeenCalled();
   });
